@@ -245,7 +245,7 @@ export class AppComponent implements OnInit {
     // });
 
     $('#fromDate').datepicker({ minDate: new Date() })
-    $('#toDate').datepicker({ minDate: new Date() })
+    $('#toDate').datepicker({ })
 
   }
 
@@ -281,10 +281,10 @@ export class AppComponent implements OnInit {
         this.flag = true;
         this.source = this.toTitleCase(this.source_name);
         this.destination = this.toTitleCase(this.dest_name);
-        this.flightDetails = d.data[0].flightDetails;
+        this.flightDetails = d.data;
         // let now = moment(, 'mm/dd/yyyy');
         this.flightDetails.forEach(el => {
-          el.depDate  = el.depDate.split('T');
+          el.depDate  = el.dateOfDeparture.split('T');
         
         }); 
         

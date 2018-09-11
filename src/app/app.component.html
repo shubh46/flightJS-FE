@@ -94,10 +94,10 @@
             <ng-container *ngFor="let i of flightDetails">
               <tr>
                 <td>
-                  {{i?.airline_name}}
+                  {{i?.flightDetails?.airline_name}}
                 </td>
                 <td>
-                  {{i?.flight_code}}
+                  {{i?.flightDetails?.flight_code}}
                 </td>
                 <td>
                   {{source}}
@@ -106,19 +106,19 @@
                   {{destination}}
                 </td>
                 <td>
-                  ₹{{i?.fare}}
+                  ₹{{i?.flightDetails?.fare}}
                 </td>
                 <td>
-                  ₹{{i?.totalFare}}
+                  ₹{{i?.flightDetails?.totalFare}}
                 </td>
                 <td>
                   {{i?.depDate[0]}}
                 </td>
                 <td>
-                  {{i?.depTime}}
+                  {{i?.flightDetails?.depTime}}
                 </td>
                 <td>
-                  {{i?.travelDuration}}
+                  {{i?.flightDetails?.travelDuration}}
                 </td>
                 <!-- <td>
                   {{i?.stops>0 ? "Multi City":"Non Stop"}}
