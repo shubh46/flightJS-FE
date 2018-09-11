@@ -284,9 +284,7 @@ export class AppComponent implements OnInit {
         this.flightDetails = d.data[0].flightDetails;
         // let now = moment(, 'mm/dd/yyyy');
         this.flightDetails.forEach(el => {
-          el.depDate  = el.depDate.split('T')
-          this.dated = el.depDate[0];
-          this.timed = el.depDate[1];
+          el.depDate  = el.depDate.split('T');
         
         }); 
         
