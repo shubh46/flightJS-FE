@@ -23,7 +23,7 @@ export class DataService {
       });
   }
   getData(value){
-    return this.http.post(environment.USER_SERVER + '/getFlightDetails', value).map( 
+    return this.http.post('https://flights-xqyuhftppf.now.sh/api' + '/getFlightDetails', value).map( 
       (response) => response.json())
         .catch(e => {
           if (e.status === 401) {
