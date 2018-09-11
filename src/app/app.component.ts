@@ -244,8 +244,8 @@ export class AppComponent implements OnInit {
       $('.datepicker').datepicker();
     // });
 
-    $('#fromDate').datepicker({ minDate: new Date() })
-    $('#toDate').datepicker({ })
+    $('#fromDate').datepicker({ maxDate: new Date() })
+    $('#toDate').datepicker({ maxDate: new Date()})
 
   }
 
