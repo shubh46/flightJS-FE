@@ -272,7 +272,6 @@ export class AppComponent implements OnInit {
 
   }
   get(value: any) {
-    // console.log('value',value);
     
     this.loading = true;
     this.ds.getData(value).subscribe(d => {
@@ -282,33 +281,30 @@ export class AppComponent implements OnInit {
         this.source = this.toTitleCase(this.source_name);
         this.destination = this.toTitleCase(this.dest_name);
         this.flightDetails = d.data[0].flightDetails;
-        // let now = moment(, 'mm/dd/yyyy');
         this.flightDetails.forEach(el => {
           el.depDate  = el.depDate.split('T');
         
         }); 
         
-        // this.flightDetails.forEach(element => {
-        //   element.depdate = element.depdate.split('T');
-        // })
-          
-        //   let obj1 = {
-        //     airline: element.airline,
-        //     flightCode:element.flightcode,
-        //     source: this.source,
-        //     dest: this.destination,
-        //     fare: element.fare.totalbasefare,
-        //     final: element.fare.grossamount,
-        //     departureDate: element.depdate[0],
-        //     departureTime: element.deptime,
-        //     duration: element.duration,
-        //     flightType: element.stops>0 ? "Multi Ciyt" : "Non Stop",
-        //     Warning:element.warnings
-        //   }
-        //   this.csvObj.push(obj1)
+        this.flightDetails.forEach(element => {
+          // element.depdate = element.depdate.split('T');
+       
+          let obj1 = {
+            airline: element.airline_name,
+            flightCode:element.flight_code,
+            source: this.source,
+            dest: this.destination,
+            fare: element.fare,
+            final: element.totalFare,
+            departureDate: element.depDate[0],
+            departureTime: element.depTime,
+            duration: element.travelDuration,
+            // flightType: element.stops>0 ? "Multi Ciyt" : "Non Stop",
+            // Warning:element.warnings
+          }
+          this.csvObj.push(obj1)
+        })
 
-
-        // });
         
       }
       else {
@@ -371,7 +367,7 @@ export class AppComponent implements OnInit {
       decimalseparator: '.',
       showLabels: true,
       showTitle: true,
-      headers: ['AirLine Code', 'Flight Code', 'Source', 'Destination', 'Fare', 'Total', 'Depar. Date', 'Depar. Time', 'Travel Duration','Flight Type','Warning']
+      headers: ['AirLine Code', 'Flight Code', 'Source', 'Destination', 'Fare', 'Total', 'Depar. Date', 'Depar. Time', 'Travel Duration']
     };
 
     new Angular2Csv(this.csvObj, 'My Report', options);
