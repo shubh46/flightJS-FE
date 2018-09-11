@@ -272,7 +272,6 @@ export class AppComponent implements OnInit {
 
   }
   get(value: any) {
-    // console.log('value',value);
     
     this.loading = true;
     this.ds.getData(value).subscribe(d => {
@@ -288,27 +287,25 @@ export class AppComponent implements OnInit {
         
         }); 
         
-        // this.flightDetails.forEach(element => {
-        //   element.depdate = element.depdate.split('T');
-        // })
-          
-        //   let obj1 = {
-        //     airline: element.airline,
-        //     flightCode:element.flightcode,
-        //     source: this.source,
-        //     dest: this.destination,
-        //     fare: element.fare.totalbasefare,
-        //     final: element.fare.grossamount,
-        //     departureDate: element.depdate[0],
-        //     departureTime: element.deptime,
-        //     duration: element.duration,
-        //     flightType: element.stops>0 ? "Multi Ciyt" : "Non Stop",
-        //     Warning:element.warnings
-        //   }
-        //   this.csvObj.push(obj1)
+        this.flightDetails.forEach(element => {
+          // element.depdate = element.depdate.split('T');
+       
+          let obj1 = {
+            airline: element.flightDetails.airline_name,
+            flightCode:element.flightDetails.flight_code,
+            source: this.source,
+            dest: this.destination,
+            fare: element.flightDetails.fare,
+            final: element.flightDetails.totalFare,
+            departureDate: element.depDate[0],
+            departureTime: element.flightDetails.depTime,
+            duration: element.flightDetails.travelDuration,
+            // flightType: element.stops>0 ? "Multi Ciyt" : "Non Stop",
+            // Warning:element.warnings
+          }
+          this.csvObj.push(obj1)
+        })
 
-
-        // });
         
       }
       else {
@@ -364,14 +361,13 @@ export class AppComponent implements OnInit {
 }
 
   download() {
-  
     var options = {
       fieldSeparator: ',',
       quoteStrings: '"',
       decimalseparator: '.',
       showLabels: true,
       showTitle: true,
-      headers: ['AirLine Code', 'Flight Code', 'Source', 'Destination', 'Fare', 'Total', 'Depar. Date', 'Depar. Time', 'Travel Duration','Flight Type','Warning']
+      headers: ['AirLine Code', 'Flight Code', 'Source', 'Destination', 'Fare', 'Total', 'Depar. Date', 'Depar. Time', 'Travel Duration']
     };
 
     new Angular2Csv(this.csvObj, 'My Report', options);
