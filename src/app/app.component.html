@@ -4,7 +4,8 @@
       <div class="">
         <div class="col m12 s12">
           <div class="signup_right change">
-            <h5 style="text-align: center;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">Plan Your Flights</h5>
+            <h5 style="text-align: center;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">Plan
+              Your Flights</h5>
             <div class="custom-overlay active" *ngIf="loading"></div>
             <div *ngIf="loading" class="spinner">
               <div class="bounce1"></div>
@@ -71,12 +72,13 @@
       <a *ngIf="flag" class="waves-effect waves-light btn" (click)="download()">export as csv</a>
     </div>
 
-    
+
     <div *ngIf="flag" class="container" style="max-width:1000px;margin:20px auto;">
       <div class="table_outer">
         <table class="responsive_tables" style="background-color: rgb(242, 246, 248)">
           <thead>
             <tr>
+              <th>S.No.</th>
               <th>AirLine Name</th>
               <th>Flight Code</th>
               <th>Source</th>
@@ -91,8 +93,11 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let i of flightDetails">
+            <ng-container *ngFor="let i of flightDetails;let in = index">
               <tr>
+                <td>
+                  {{in+1}}
+                </td>
                 <td>
                   {{i?.flightDetails?.airline_name}}
                 </td>
