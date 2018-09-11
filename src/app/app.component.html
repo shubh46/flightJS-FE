@@ -1,0 +1,139 @@
+<div class="main">
+  <div class="outer_signin_signup">
+    <div class="container">
+      <div class="">
+        <div class="col m12 s12">
+          <div class="signup_right change">
+            <h5 style="text-align: center;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">Plan Your Flights</h5>
+            <div class="custom-overlay active" *ngIf="loading"></div>
+            <div *ngIf="loading" class="spinner">
+              <div class="bounce1"></div>
+              <div class="bounce2"></div>
+              <div class="bounce3"></div>
+            </div>
+            <div class="signup_form_inner">
+              <form class="form-horizontal">
+                <div class="row">
+                  <div class="outer_position col s12 change">
+                    <h5 class="head">Source</h5>
+                    <input type="text" [(ngModel)]="source_name" name="src" id="inputSource" placeholder="From: City or Airport">
+                  </div>
+                  <div class="outer_position col s12">
+                    <h5>Destination</h5>
+                    <input type="text" [(ngModel)]="dest_name" name="dest" id="inputDest" placeholder="To: City or Airport">
+                  </div>
+                  <div class="outer_position col s12">
+                    <h5>Departure Date | from date</h5>
+                    <input id="fromDate" type="text" class="datepicker">
+                  </div>
+                  <div class="outer_position col s12">
+                    <h5>To Date</h5>
+                    <input id="toDate" type="text" class="datepicker">
+                  </div>
+                  <div class="outer_position col s6">
+                    <h5>Adults</h5>
+                    <input type="text" [(ngModel)]="noOfadultPassnegers" [ngModelOptions]="{standalone: true}">
+                  </div>
+                  <div class="outer_position col s6">
+                    <h5>Childs</h5>
+                    <input type="text" [(ngModel)]="noOfchildPassnegers" [ngModelOptions]="{standalone: true}">
+                  </div>
+                  <div class="outer_position col s12">
+                    <h5>Seating Class</h5>
+                    <select class="browser-default " id="flights" (change)="opt($event)">
+                      <optgroup *ngFor="let air of class">
+                        <option [selected]=" air?.key=='E' " value="{{air?.key}}">{{air?.class}}</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                  <!-- <div>
+                    <div class="col s6 form">
+                      <label><br>
+                        <input name="group1" type="radio" value="multiCity" id="1" checked/>
+                        <span style="color:black">Multi City</span>
+                      </label>
+                      <label>&nbsp;
+                        <input name="group1" type="radio" id="2" value="nonStop">
+                        <span style="color:black">Non Stop</span>
+                      </label>
+                    </div>
+                  </div> -->
+                </div>
+                <div class="outer_position">
+                  <button type="reset" class="btn btn1 btn-danger">Reset</button>
+                  <button type="submit" class="btn btn2 btn-primary" (click)="onSubmit()">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a *ngIf="flag" class="waves-effect waves-light btn" (click)="download()">export as csv</a>
+    </div>
+
+    
+    <div *ngIf="flag" class="container" style="max-width:1000px;margin:20px auto;">
+      <div class="table_outer">
+        <table class="responsive_tables" style="background-color: rgb(242, 246, 248)">
+          <thead>
+            <tr>
+              <th>AirLine Name</th>
+              <th>Flight Code</th>
+              <th>Source</th>
+              <th>Destination</th>
+              <th>Fare</th>
+              <th>Total Price</th>
+              <th>Departure Date</th>
+              <th>Departure Time</th>
+              <th>Travel Duration</th>
+              <!-- <th>Flight Type</th>
+              <th>Warnings</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let i of flightDetails">
+              <tr>
+                <td>
+                  {{i?.airline_name}}
+                </td>
+                <td>
+                  {{i?.flight_code}}
+                </td>
+                <td>
+                  {{source}}
+                </td>
+                <td>
+                  {{destination}}
+                </td>
+                <td>
+                  ₹{{i?.fare}}
+                </td>
+                <td>
+                  ₹{{i?.totalFare}}
+                </td>
+                <td>
+                  {{dated}}
+                </td>
+                <td>
+                  {{timed}}
+                </td>
+                <td>
+                  {{i?.travelDuration}}
+                </td>
+                <!-- <td>
+                  {{i?.stops>0 ? "Multi City":"Non Stop"}}
+                </td>
+                <td>
+                  {{i?.warnings}}
+                </td> -->
+              </tr>
+              <br>
+            </ng-container>
+          </tbody>
+        </table>
+        <div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
