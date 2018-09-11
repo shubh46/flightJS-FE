@@ -360,7 +360,6 @@ export class AppComponent implements OnInit {
 }
 
   download() {
-  
     var options = {
       fieldSeparator: ',',
       quoteStrings: '"',
