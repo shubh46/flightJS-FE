@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { Http } from '@angular/http';
 import { environment } from '../environments/environment';
 import 'rxjs/add/operator/map';
@@ -23,6 +22,7 @@ export class DataService {
       });
   }
   getData(value){
+    console.log('value', value);
     return this.http.post('https://flights-xqyuhftppf.now.sh/api' + '/getFlightDetails', value).map( 
       (response) => response.json())
         .catch(e => {
