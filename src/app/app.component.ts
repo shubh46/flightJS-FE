@@ -29,6 +29,8 @@ export class AppComponent implements OnInit {
   loading: boolean = false;
   minTravelDate: any;
   data1: any;
+  created_on;
+  created_till;
   obj2: any;
   obj1: any;
   csvObj: any = new Array();
@@ -246,6 +248,8 @@ export class AppComponent implements OnInit {
 
     $('#fromDate').datepicker({ maxDate: new Date() })
     $('#toDate').datepicker({ maxDate: new Date()})
+    $('#created_on').datepicker({ maxDate: new Date()})
+    $('#created_till').datepicker({ maxDate: new Date()})
 
   }
 
@@ -284,7 +288,6 @@ export class AppComponent implements OnInit {
         // let now = moment(, 'mm/dd/yyyy');
         this.flightDetails.forEach(el => {
           el.depDate  = el.dateOfDeparture.split('T');
-        
         }); 
         
         this.flightDetails.forEach(element => {
@@ -318,6 +321,8 @@ export class AppComponent implements OnInit {
   onSubmit() {
     let date1 = $('#fromDate').val();
     let date2 = $('#toDate').val();
+    let date3 = $('#created_on').val();
+    let date4 = $('#created_till').val();
     if ($('#1').prop('checked')) {
       this.option = true;
     }
@@ -327,6 +332,9 @@ export class AppComponent implements OnInit {
 
     this.finaldate = this.datePipe.transform(date1, "yyyy-MM-dd")
     this.toDate = this.datePipe.transform(date2, "yyyy-MM-dd")
+    this.created_on = this.datePipe.transform(date3, "yyyy-MM-dd")
+    this.created_till = this.datePipe.transform(date4, "yyyy-MM-dd")
+
 
     // date = $('#toDate').val();
     // this.returnDate = this.datePipe.transform(date, "yyyy-MM-dd")
@@ -342,7 +350,9 @@ export class AppComponent implements OnInit {
     let obj = {
       origin: source,
       destination: destination,
-      originDate: this.finaldate,
+      fromDate: this.finaldate,
+      created_on: this.created_on,
+      created_till: this.created_till,
       toDate: this.toDate,
       adulttravellers: this.noOfadultPassnegers,
       childtravellers: this.noOfchildPassnegers,
