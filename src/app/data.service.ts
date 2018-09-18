@@ -11,19 +11,19 @@ export class DataService {
 
   constructor(private http: Http) { }
   // 'https://flightcrawler-be-tnkhpxqwcs.now.sh/api'
-  get(value){
-     return this.http.post('https://flightcrawler-be-xnlqyfeuyk.now.sh/api' + '/get', value).map( 
-    (response) => response.json())
-      .catch(e => {
-        if (e.status === 401) {
-          console.log('Error');
-        }
-        return [];
-      });
-  }
+  // get(value){
+  //    return this.http.post('https://flightcrawler-be-xnlqyfeuyk.now.sh/api' + '/get', value).map( 
+  //   (response) => response.json())
+  //     .catch(e => {
+  //       if (e.status === 401) {
+  //         console.log('Error');
+  //       }
+  //       return [];
+  //     });
+  // }
   getData(value){
     console.log('value', value);
-    return this.http.post('https://flights-xqyuhftppf.now.sh/api' + '/getFlightDetails', value).map( 
+    return this.http.post('https://ibiboflights.herokuapp.com/api' + '/getFlightDetails', value).map( 
       (response) => response.json())
         .catch(e => {
           if (e.status === 401) {
