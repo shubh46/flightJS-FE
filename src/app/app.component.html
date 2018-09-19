@@ -93,6 +93,7 @@
               <th>Destination</th>
               <th>Fare</th>
               <th>Total Price</th>
+              <th>Data Saved On</th>
               <th>Departure Date</th>
               <th>Departure Time</th>
               <th>Travel Duration</th>
@@ -123,6 +124,9 @@
                 </td>
                 <td>
                   ₹{{i?.flightDetails?.totalFare}}
+                </td>
+                <td>
+                  {{i?.created_on[0]}}
                 </td>
                 <td>
                   {{i?.depDate[0]}}
