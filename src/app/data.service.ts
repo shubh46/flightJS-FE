@@ -14,7 +14,7 @@ export class DataService {
   getData(value){
     // 'https://ibiboflights.herokuapp.com/api'
     console.log('value', value);
-    return this.http.post( 'https://ibiboflights.herokuapp.com/api' + '/getFlightDetails', value).map( 
+    return this.http.post( environment.USER_SERVER + '/getFlightDetails', value).map( 
       (response) => response.json())
         .catch(e => {
           if (e.status === 401) {
